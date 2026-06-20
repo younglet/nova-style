@@ -1,5 +1,7 @@
 # 5 分钟上手
 
+<iframe src="/examples/flasher.html" width="100%" height="280" frameborder="0" style="border-radius:8px;margin-bottom:24px"></iframe>
+
 ## 一句话安装
 
 ```html
