@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>案例 07 - 简易柱状图</title>
+  <link rel="stylesheet" href="nova-style.css">
+</head>
+<body class="bg-gray-50 p-4 min-h-screen">
+
+  <h1 class="text-2xl font-bold mb-2">📈 今日温度变化</h1>
+  <p class="text-sm text-gray-500 mb-4">纯 div + flex 实现的柱状图，零依赖</p>
+
+  <!-- 图表区 -->
+  <div class="bg-white p-4 rounded-lg shadow mb-4">
+    <div class="flex items-end justify-between gap-1" style="height: 180px;">
+      <div class="flex flex-col items-center w-full">
+        <div class="text-xs text-gray-500 mb-1">14°</div>
+        <div class="bg-blue-500 w-full rounded-t" style="height: 30%"></div>
+        <div class="text-xs text-gray-500 mt-1">6</div>
+      </div>
+      <div class="flex flex-col items-center w-full">
+        <div class="text-xs text-gray-500 mb-1">16°</div>
+        <div class="bg-blue-500 w-full rounded-t" style="height: 40%"></div>
+        <div class="text-xs text-gray-500 mt-1">8</div>
+      </div>
+      <div class="flex flex-col items-center w-full">
+        <div class="text-xs text-gray-500 mb-1">21°</div>
+        <div class="bg-blue-500 w-full rounded-t" style="height: 60%"></div>
+        <div class="text-xs text-gray-500 mt-1">10</div>
+      </div>
+      <div class="flex flex-col items-center w-full">
+        <div class="text-xs text-gray-500 mb-1">25°</div>
+        <div class="bg-green-500 w-full rounded-t" style="height: 75%"></div>
+        <div class="text-xs text-gray-500 mt-1">12</div>
+      </div>
+      <div class="flex flex-col items-center w-full">
+        <div class="text-xs text-gray-500 mb-1">28°</div>
+        <div class="bg-yellow-500 w-full rounded-t" style="height: 85%"></div>
+        <div class="text-xs text-gray-500 mt-1">14</div>
+      </div>
+      <div class="flex flex-col items-center w-full">
+        <div class="text-xs text-gray-500 mb-1">30°</div>
+        <div class="bg-red-500 w-full rounded-t" style="height: 95%"></div>
+        <div class="text-xs text-gray-500 mt-1">16</div>
+      </div>
+      <div class="flex flex-col items-center w-full">
+        <div class="text-xs text-gray-500 mb-1">27°</div>
+        <div class="bg-yellow-500 w-full rounded-t" style="height: 80%"></div>
+        <div class="text-xs text-gray-500 mt-1">18</div>
+      </div>
+      <div class="flex flex-col items-center w-full">
+        <div class="text-xs text-gray-500 mb-1">23°</div>
+        <div class="bg-blue-500 w-full rounded-t" style="height: 65%"></div>
+        <div class="text-xs text-gray-500 mt-1">20</div>
+      </div>
+    </div>
+    <div class="text-center text-xs text-gray-500 mt-2 pt-2 border">时间（小时）</div>
+  </div>
+
+  <!-- 图例 -->
+  <div class="bg-white p-4 rounded-lg shadow">
+    <div class="text-sm font-bold mb-3">温度区间</div>
+    <div class="flex flex-col gap-2">
+      <div class="flex items-center gap-2">
+        <span class="w-4 h-4 rounded bg-blue-500"></span>
+        <span class="text-sm text-gray-700">正常（&lt; 25°C）</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-4 h-4 rounded bg-green-500"></span>
+        <span class="text-sm text-gray-700">舒适（25~28°C）</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-4 h-4 rounded bg-yellow-500"></span>
+        <span class="text-sm text-gray-700">偏热（28~30°C）</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-4 h-4 rounded bg-red-500"></span>
+        <span class="text-sm text-gray-700">过热（&gt; 30°C）</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-blue-100 p-4 rounded-lg text-blue-700 text-sm mt-4">
+    💡 <b>原理</b>：每根柱子是一个 <code class="font-mono">flex flex-col items-center</code>，里面塞一个高度用 <code class="font-mono">style="height: 60%"</code> 控制的 div。需要动态数据时用 v-for / map 循环生成即可。
+  </div>
+
+</body>
+</html>

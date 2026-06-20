@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>案例 06 - 设备配置表单</title>
+  <link rel="stylesheet" href="docs/public/nova-style.css">
+</head>
+<body class="bg-gray-50 p-4 min-h-screen">
+
+  <h1 class="text-2xl font-bold mb-2">📝 设备配置</h1>
+  <p class="text-sm text-gray-500 mb-4">表单元素（input/select/checkbox/range）已内置基础样式</p>
+
+  <div class="bg-white p-6 rounded-lg shadow max-w-md">
+
+    <div class="mb-4">
+      <label>设备名称</label>
+      <input type="text" value="客厅灯" placeholder="给设备起个名字">
+    </div>
+
+    <div class="mb-4">
+      <label>设备类型</label>
+      <select>
+        <option>💡 灯</option>
+        <option>🌀 风扇</option>
+        <option>❄️ 空调</option>
+        <option>💧 加湿器</option>
+      </select>
+    </div>
+
+    <div class="mb-4">
+      <label>默认亮度: <span id="brightnessLabel">75</span>%</label>
+      <input type="range" min="0" max="100" value="75" id="brightness">
+    </div>
+
+    <div class="mb-4">
+      <label>备注</label>
+      <textarea rows="3" placeholder="可选备注..."></textarea>
+    </div>
+
+    <div class="mb-4 flex items-center gap-2">
+      <input type="checkbox" id="auto" checked>
+      <label for="auto" class="text-sm text-gray-700" style="margin: 0">通电后自动开启</label>
+    </div>
+
+    <div class="mb-4 flex items-center gap-2">
+      <input type="radio" name="mode" id="day" checked>
+      <label for="day" class="text-sm text-gray-700" style="margin: 0">白天模式</label>
+      <input type="radio" name="mode" id="night" style="margin-left: 1rem">
+      <label for="night" class="text-sm text-gray-700" style="margin: 0">夜间模式</label>
+    </div>
+
+    <div class="flex gap-2 mt-6">
+      <button class="flex-1 py-2 rounded bg-blue-500 text-white cursor-pointer">保存</button>
+      <button class="flex-1 py-2 rounded bg-gray-200 text-gray-700 cursor-pointer">取消</button>
+    </div>
+
+  </div>
+
+  <div class="bg-blue-100 p-4 rounded-lg text-blue-700 text-sm mt-4 max-w-md">
+    💡 <b>提示</b>：CSS 末尾内置了 <code class="font-mono">input/select/textarea</code> 的基础样式（边框、圆角、focus 颜色），会自动适配暗色模式。
+  </div>
+
+  <script>
+    // 滑块实时显示数值
+    const slider = document.getElementById('brightness')
+    const label  = document.getElementById('brightnessLabel')
+    slider.addEventListener('input', () => label.textContent = slider.value)
+  </script>
+
+</body>
+</html>

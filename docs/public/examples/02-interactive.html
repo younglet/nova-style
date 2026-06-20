@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>案例 02 - 开关按钮</title>
+  <link rel="stylesheet" href="nova-style.css">
+</head>
+<body class="bg-gray-50 p-4 min-h-screen">
+
+  <h1 class="text-2xl font-bold mb-2">💡 客厅灯控制</h1>
+  <p class="text-sm text-gray-500 mb-4">点击按钮切换开关，状态文字和颜色会变</p>
+
+  <!-- ========== 状态显示 ========== -->
+  <div class="bg-white p-6 rounded-lg shadow text-center mb-4">
+    <div class="text-sm text-gray-500">当前状态</div>
+    <div id="status" class="text-3xl font-bold mt-2 text-gray-500">关</div>
+    <div class="mt-3">
+      <span id="led" class="inline-block w-4 h-4 rounded-full bg-gray-300"></span>
+    </div>
+  </div>
+
+  <!-- ========== 按钮组 ========== -->
+  <div class="flex gap-2">
+    <button id="btnOn" class="flex-1 py-3 rounded bg-green-500 text-white cursor-pointer transition">
+      开灯
+    </button>
+    <button id="btnOff" class="flex-1 py-3 rounded bg-gray-200 text-gray-700 cursor-pointer transition">
+      关灯
+    </button>
+  </div>
+
+  <!-- ========== 练习提示 ========== -->
+  <div class="bg-blue-100 text-blue-700 p-3 rounded mt-4 text-sm">
+    💡 <b>练习</b>：再加一个设备（如"风扇"），复制按钮组改个 id 即可。
+  </div>
+
+  <script>
+    // ===== 1. 拿到要操作的元素 =====
+    const status = document.getElementById('status')
+    const led    = document.getElementById('led')
+    const btnOn  = document.getElementById('btnOn')
+    const btnOff = document.getElementById('btnOff')
+
+    // ===== 2. 写两个函数 =====
+    function turnOn() {
+      status.textContent = '开'
+      status.className   = 'text-3xl font-bold mt-2 text-green-500'
+      led.className      = 'inline-block w-4 h-4 rounded-full bg-green-500'
+    }
+
+    function turnOff() {
+      status.textContent = '关'
+      status.className   = 'text-3xl font-bold mt-2 text-gray-500'
+      led.className      = 'inline-block w-4 h-4 rounded-full bg-gray-300'
+    }
+
+    // ===== 3. 绑定点击事件 =====
+    btnOn.addEventListener('click', turnOn)
+    btnOff.addEventListener('click', turnOff)
+  </script>
+
+</body>
+</html>

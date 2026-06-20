@@ -1,0 +1,122 @@
+import { defineConfig } from 'vitepress'
+
+export default defineConfig({
+  title: 'Nova Style',
+  description: 'IoT 原子 CSS 工具类。120 个 class · 12KB min · 给 ESP32 + MicroPython server 用 · 5 色语义（绿/红/黄/蓝/灰） · 内置暗色模式',
+  lang: 'zh-CN',
+  cleanUrls: true,
+  lastUpdated: true,
+
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+    ['link', { rel: 'stylesheet', href: '/nova-style.min.css' }],
+    ['meta', { name: 'theme-color', content: '#10b981' }]
+  ],
+
+  themeConfig: {
+    siteTitle: 'Nova Style',
+
+    nav: [
+      { text: '指南', link: '/guide/what-is-nova-style', activeMatch: '/guide/' },
+      { text: '工具类', link: '/utilities/display', activeMatch: '/utilities/' },
+      { text: '案例', link: '/examples/01-static.html', activeMatch: '/examples/' }
+    ],
+
+    sidebar: {
+      '/guide/': [
+        {
+          text: '介绍',
+          items: [
+            { text: '什么是 Nova Style', link: '/guide/what-is-nova-style' },
+            { text: '安装', link: '/guide/installation' },
+            { text: '设计原则', link: '/guide/design-principles' },
+            { text: '暗色模式', link: '/guide/dark-mode' }
+          ]
+        }
+      ],
+      '/utilities/': [
+        {
+          text: '速查',
+          items: [
+            { text: '完整 class 索引', link: '/utilities/index' }
+          ]
+        },
+        {
+          text: '布局',
+          items: [
+            { text: 'Display', link: '/utilities/display' },
+            { text: 'Flex', link: '/utilities/flex' },
+            { text: 'Grid', link: '/utilities/grid' }
+          ]
+        },
+        {
+          text: '间距',
+          items: [
+            { text: 'Padding & Margin', link: '/utilities/spacing' }
+          ]
+        },
+        {
+          text: '尺寸',
+          items: [
+            { text: 'Width & Height', link: '/utilities/sizing' }
+          ]
+        },
+        {
+          text: '外观',
+          items: [
+            { text: 'Typography', link: '/utilities/typography' },
+            { text: 'Colors', link: '/utilities/colors' },
+            { text: 'Borders & Shadows', link: '/utilities/borders' }
+          ]
+        },
+        {
+          text: '交互',
+          items: [
+            { text: 'Cursor', link: '/utilities/cursor' },
+            { text: 'Transitions & Hover', link: '/utilities/transitions' }
+          ]
+        },
+        {
+          text: '表单',
+          items: [
+            { text: 'Forms', link: '/utilities/forms' }
+          ]
+        }
+      ],
+      '/examples/': [
+        {
+          text: '基础案例',
+          items: [
+            { text: '传感器卡片', link: '/examples/sensor-card' },
+            { text: '开关按钮', link: '/examples/toggle-button' },
+            { text: '仪表盘', link: '/examples/dashboard' },
+            { text: '控制台', link: '/examples/control-panel' }
+          ]
+        }
+      ]
+    },
+
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/' }
+    ],
+
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: `Copyright © ${new Date().getFullYear()} Nova Style`
+    },
+
+    search: {
+      provider: 'local'
+    },
+
+    outline: {
+      level: [2, 3],
+      label: '本页内容'
+    },
+
+    docFooter: {
+      prev: '上一篇',
+      next: '下一篇'
+    }
+  }
+})

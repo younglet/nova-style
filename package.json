@@ -1,0 +1,27 @@
+{
+  "name": "nova-style",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "极简工具类 CSS，专为物联网控制页面设计",
+  "scripts": {
+    "build": "csso src/nova-style.css -o src/nova-style.min.css",
+    "docs:dev": "node scripts/sync.js && vitepress dev docs",
+    "docs:build": "node scripts/sync.js && vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "sync": "node scripts/sync.js"
+  },
+  "keywords": [
+    "css",
+    "utility-first",
+    "iot",
+    "dashboard",
+    "tailwind-alternative"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "csso-cli": "^4.0.2",
+    "vitepress": "^1.5.0",
+    "vue": "^3.5.0"
+  }
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>案例 03 - 实时数据仪表盘</title>
+  <link rel="stylesheet" href="docs/public/nova-style.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <!-- ========== 顶部导航 ========== -->
+  <div class="bg-gray-800 text-white p-4 flex justify-between items-center">
+    <div class="text-lg font-bold">🌡️ 实验室环境监控</div>
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-green-500"></span>
+      <span class="text-sm">在线</span>
+    </div>
+  </div>
+
+  <!-- ========== 主体内容 ========== -->
+  <div class="p-4">
+
+    <h2 class="text-lg font-bold mb-3">实时数据 <span class="text-xs text-gray-500 font-normal">（每 2 秒更新）</span></h2>
+
+    <!-- 数据卡片 -->
+    <div class="grid grid-cols-3 gap-4 mb-6">
+      <div class="bg-white p-4 rounded-lg shadow text-center">
+        <div class="text-sm text-gray-500">温度</div>
+        <div id="temp" class="text-3xl font-bold mt-2">--</div>
+        <div class="text-xs text-gray-500 mt-1">°C</div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow text-center">
+        <div class="text-sm text-gray-500">湿度</div>
+        <div id="humi" class="text-3xl font-bold mt-2 text-blue-500">--</div>
+        <div class="text-xs text-gray-500 mt-1">%</div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow text-center">
+        <div class="text-sm text-gray-500">光照</div>
+        <div id="light" class="text-3xl font-bold mt-2 text-yellow-500">--</div>
+        <div class="text-xs text-gray-500 mt-1">lx</div>
+      </div>
+    </div>
+
+    <!-- 设备列表 -->
+    <h2 class="text-lg font-bold mb-3">设备状态</h2>
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+      <div class="p-3 flex justify-between items-center border">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-green-500"></span>
+          <span>主传感器</span>
+        </div>
+        <span class="text-xs text-gray-500">运行中</span>
+      </div>
+      <div class="p-3 flex justify-between items-center border">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-green-500"></span>
+          <span>温湿度计</span>
+        </div>
+        <span class="text-xs text-gray-500">运行中</span>
+      </div>
+      <div class="p-3 flex justify-between items-center border">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+          <span>光照传感器</span>
+        </div>
+        <span class="text-xs text-gray-500">信号弱</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ===== 模拟传感器数据 =====
+    function update() {
+      const temp  = (20 + Math.random() * 10).toFixed(1)
+      const humi  = (50 + Math.random() * 20).toFixed(0)
+      const light = (300 + Math.random() * 200).toFixed(0)
+
+      document.getElementById('temp').textContent  = temp
+      document.getElementById('humi').textContent  = humi
+      document.getElementById('light').textContent = light
+    }
+
+    // 立即执行一次 + 每 2 秒更新
+    update()
+    setInterval(update, 2000)
+  </script>
+
+</body>
+</html>

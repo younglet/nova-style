@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>案例 08 - 综合 IoT 监控台</title>
+  <link rel="stylesheet" href="docs/public/nova-style.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <!-- ========== 顶部导航 ========== -->
+  <div class="bg-white p-4 flex justify-between items-center shadow">
+    <div class="flex items-center gap-3">
+      <div class="text-lg font-bold">🌐 智慧大棚监控</div>
+      <span class="text-xs text-gray-500">v1.0</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-green-500"></span>
+      <span class="text-sm text-gray-700">4 台设备在线</span>
+      <span class="text-sm text-gray-500" id="time">--:--:--</span>
+    </div>
+  </div>
+
+  <div class="p-4">
+
+    <!-- ========== 核心指标 ========== -->
+    <div class="grid grid-cols-4 gap-3 mb-4">
+      <div class="bg-white p-4 rounded-lg shadow text-center">
+        <div class="text-xs text-gray-500">空气温度</div>
+        <div class="text-2xl font-bold mt-1"><span id="t1">--</span><span class="text-sm text-gray-500"> °C</span></div>
+        <div class="text-xs text-green-500 mt-1">↑ 正常</div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow text-center">
+        <div class="text-xs text-gray-500">空气湿度</div>
+        <div class="text-2xl font-bold mt-1 text-blue-500"><span id="t2">--</span><span class="text-sm text-gray-500"> %</span></div>
+        <div class="text-xs text-green-500 mt-1">↑ 正常</div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow text-center">
+        <div class="text-xs text-gray-500">土壤湿度</div>
+        <div class="text-2xl font-bold mt-1 text-yellow-500"><span id="t3">--</span><span class="text-sm text-gray-500"> %</span></div>
+        <div class="text-xs text-yellow-700 mt-1">⚠ 偏低</div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow text-center">
+        <div class="text-xs text-gray-500">光照</div>
+        <div class="text-2xl font-bold mt-1"><span id="t4">--</span><span class="text-sm text-gray-500"> lx</span></div>
+        <div class="text-xs text-gray-500 mt-1">- 平稳</div>
+      </div>
+    </div>
+
+    <!-- ========== 设备控制 + 告警 ========== -->
+    <div class="grid grid-cols-3 gap-3">
+
+      <!-- 设备控制 -->
+      <div class="col-span-2">
+        <h2 class="text-base font-bold mb-3">设备控制</h2>
+        <div class="grid grid-cols-2 gap-3" id="devices">
+          <div class="bg-white p-4 rounded-lg shadow">
+            <div class="flex justify-between items-center mb-3">
+              <div class="font-bold">💡 补光灯</div>
+              <span id="led-1" class="w-2 h-2 rounded-full bg-gray-300"></span>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="toggle(1, true)"  class="flex-1 py-2 rounded bg-green-500 text-white text-sm cursor-pointer">开</button>
+              <button onclick="toggle(1, false)" class="flex-1 py-2 rounded bg-gray-200 text-gray-700 text-sm cursor-pointer">关</button>
+            </div>
+          </div>
+
+          <div class="bg-white p-4 rounded-lg shadow">
+            <div class="flex justify-between items-center mb-3">
+              <div class="font-bold">🌀 通风扇</div>
+              <span id="led-2" class="w-2 h-2 rounded-full bg-gray-300"></span>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="toggle(2, true)"  class="flex-1 py-2 rounded bg-blue-500 text-white text-sm cursor-pointer">开</button>
+              <button onclick="toggle(2, false)" class="flex-1 py-2 rounded bg-gray-200 text-gray-700 text-sm cursor-pointer">关</button>
+            </div>
+          </div>
+
+          <div class="bg-white p-4 rounded-lg shadow">
+            <div class="flex justify-between items-center mb-3">
+              <div class="font-bold">💧 灌溉泵</div>
+              <span id="led-3" class="w-2 h-2 rounded-full bg-gray-300"></span>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="toggle(3, true)"  class="flex-1 py-2 rounded bg-blue-500 text-white text-sm cursor-pointer">开</button>
+              <button onclick="toggle(3, false)" class="flex-1 py-2 rounded bg-gray-200 text-gray-700 text-sm cursor-pointer">关</button>
+            </div>
+          </div>
+
+          <div class="bg-white p-4 rounded-lg shadow">
+            <div class="flex justify-between items-center mb-3">
+              <div class="font-bold">🌡 加热器</div>
+              <span id="led-4" class="w-2 h-2 rounded-full bg-gray-300"></span>
+            </div>
+            <div class="flex gap-2">
+              <button onclick="toggle(4, true)"  class="flex-1 py-2 rounded bg-red-500 text-white text-sm cursor-pointer">开</button>
+              <button onclick="toggle(4, false)" class="flex-1 py-2 rounded bg-gray-200 text-gray-700 text-sm cursor-pointer">关</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-2 mt-3">
+          <button onclick="allOn()"  class="flex-1 py-2 rounded bg-green-500 text-white cursor-pointer text-sm">✅ 全部开启</button>
+          <button onclick="allOff()" class="flex-1 py-2 rounded bg-red-500 text-white cursor-pointer text-sm">🚫 全部关闭</button>
+        </div>
+      </div>
+
+      <!-- 告警日志 -->
+      <div>
+        <h2 class="text-base font-bold mb-3">告警日志</h2>
+        <div class="bg-white rounded-lg shadow">
+          <div class="p-3 border">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+              <span class="text-xs text-gray-500">10:23</span>
+              <span class="text-sm">土壤湿度偏低</span>
+            </div>
+          </div>
+          <div class="p-3 border">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-green-500"></span>
+              <span class="text-xs text-gray-500">09:45</span>
+              <span class="text-sm">补光灯已开启</span>
+            </div>
+          </div>
+          <div class="p-3 border">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+              <span class="text-xs text-gray-500">08:00</span>
+              <span class="text-sm">系统启动</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    // ===== 设备状态 =====
+    const state = { 1: false, 2: false, 3: false, 4: false }
+
+    function toggle(id, on) {
+      state[id] = on
+      const led = document.getElementById('led-' + id)
+      const map = {
+        1: 'bg-green-500',  // 补光灯
+        2: 'bg-blue-500',   // 通风扇
+        3: 'bg-blue-500',   // 灌溉
+        4: 'bg-red-500'     // 加热
+      }
+      led.className = on
+        ? 'w-2 h-2 rounded-full ' + map[id]
+        : 'w-2 h-2 rounded-full bg-gray-300'
+    }
+
+    function allOn()  { [1,2,3,4].forEach(i => toggle(i, true)) }
+    function allOff() { [1,2,3,4].forEach(i => toggle(i, false)) }
+
+    // ===== 模拟实时数据 =====
+    function update() {
+      document.getElementById('t1').textContent = (22 + Math.random() * 6).toFixed(1)
+      document.getElementById('t2').textContent = (55 + Math.random() * 20).toFixed(0)
+      document.getElementById('t3').textContent = (30 + Math.random() * 15).toFixed(0)
+      document.getElementById('t4').textContent = (300 + Math.random() * 400).toFixed(0)
+    }
+
+    // ===== 时钟 =====
+    function tick() {
+      const d = new Date()
+      const pad = n => String(n).padStart(2, '0')
+      document.getElementById('time').textContent =
+        pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds())
+    }
+
+    update(); tick()
+    setInterval(update, 3000)
+    setInterval(tick, 1000)
+  </script>
+
+</body>
+</html>
