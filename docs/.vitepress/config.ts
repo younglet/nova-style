@@ -19,7 +19,16 @@ export default defineConfig({
     nav: [
       { text: '指南', link: '/guide/what-is-nova-style', activeMatch: '/guide/' },
       { text: '工具类', link: '/utilities/display', activeMatch: '/utilities/' },
-      { text: '案例', link: '/examples/01-static.html', activeMatch: '/examples/' }
+      { text: '案例', link: '/examples/01-static.html', activeMatch: '/examples/' },
+      {
+        text: '生态',
+        items: [
+          { text: 'novajs', link: 'http://novajs.local' },
+          { text: 'Nova Style', link: 'http://nova-style.local' },
+          { text: 'Nova UI', link: 'http://nova-ui.local' },
+          { text: 'NovaChart', link: 'http://nova-chart.local' }
+        ]
+      }
     ],
 
     sidebar: {
