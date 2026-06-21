@@ -4,7 +4,7 @@
 
 ## 一句话
 
-**nova-style** 是 12KB 的 IoT 专用原子 CSS（120 个 class）。颜色语义化、暗色模式零成本。
+**nova-style** 是 11KB 的 IoT 专用原子 CSS（120 个 class）。颜色语义化、暗色模式零成本。
 
 ## 目标平台
 
@@ -14,7 +14,7 @@
 
 | 约束 | 体现 |
 |---|---|
-| 小 | 单文件 12KB，无 JS |
+| 小 | 单文件 11KB，无 JS |
 | IoT 场景 | 颜色语义化（绿=正常 / 红=异常 / 黄=警告 / 蓝=信息） |
 | 简单 | 纯 CSS class，学生能看懂源码 |
 | 暗色模式 | 加一行 `.dark` 切换，无需 `dark:` 前缀 |
@@ -25,21 +25,26 @@
 
 ```bash
 cd nova-frontend/nova-style
-ls nova-style.css        # 单文件 CSS，发布物
-open core.md             # class 速查
+ls nova-style.min.css    # 11KB 主文件（发布物）
+npm run build            # csso 压缩 src → min.css
+npm run docs:dev         # 起 docs 站点（5174 端口）
 ```
 
-CSS 文件就是发布物。不用 build，不用 test。
+CSS 文件就是发布物。**没有**自动化测试，靠 8 个 demo 手动看。
 
 ## 关键文件
 
 ```
 nova-style/
 ├── AGENTS.md              ← 你正在看的
-├── nova-style.css         ← 12KB 主文件
-├── core.md                ← class 速查（开发时查这个）
-├── package.json           ← VitePress 依赖（如果加 docs）
+├── nova-style.min.css     ← 11KB 主文件（发布物）
+├── src/nova-style.css     ← 源码
+├── package.json           ← build / sync / docs:dev / docs:build
 ├── README.md
+├── scripts/
+│   └── sync-public.js     ← 把 src / examples / index.novastyle.html 同步到 docs/public/
+├── index.novastyle.html   ← ESP32 /static/ 入口 HTML
+├── Dockerfile
 ├── 01-static.html         ← 静态展示 demo
 ├── 02-interactive.html    ← 交互 demo
 ├── 03-dashboard.html
@@ -113,8 +118,11 @@ rounded / shadow
 
 ## 提交前 checklist
 
-- 浏览器打开 8 个 demo 看效果没坏
-- 暗色模式（加 `.dark` class）也好看
+```bash
+npm run build   # csso 压缩不报错
+```
+
+浏览器打开 8 个 demo 看效果没坏；暗色模式（加 `.dark` class）也好看。
 
 ## 不要做的事
 
@@ -122,3 +130,4 @@ rounded / shadow
 - ❌ 加 JS
 - ❌ 加 `dark:` 前缀（用 `.dark` 容器类）
 - ❌ 改核心颜色语义（绿=正常 / 红=异常）
+- ❌ 加 nova-ui/nova-chart 那种复杂组件（CSS 工具类够了）
