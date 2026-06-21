@@ -55,8 +55,8 @@ python3 -m http.server 8000 --directory src
 
 nova-style 是纯 CSS，可以单独用，也可以：
 
-- + [novajs](http://novajs.local)：加反应式（推荐组合）
-- + [nova-ui](http://nova-ui.local)：加 9 个 `<nova-*>` 自定义元素
-- + [nova-chart](http://nova-chart.local)：加图表
+- + [novajs](http://novajs.test)：加反应式（推荐组合）
+- + [nova-ui](http://nova-ui.test)：加 9 个 `<nova-*>` 自定义元素
+- + [nova-chart](http://nova-chart.test)：加图表
 
 多项目一起用时，每个项目的 HTML 文件名加前缀（`.novastyle.`）避免 `/static/index.html` 冲突。
