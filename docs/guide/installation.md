@@ -2,6 +2,9 @@
 
 <Esp32Flasher project="nova-style" />
 
+> 💡 **需要 MicroPython server？** 配套 [**nova-server**](../../../nova-server/) 是 ESP32 异步 Web 框架，
+> 把 HTML 文件交给 nova-server 的 `/www/static/`，一行 `app.run()` 就能从手机访问。
+
 ## 一句话安装
 
 ```html

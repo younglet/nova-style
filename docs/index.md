@@ -4,7 +4,7 @@ layout: home
 hero:
   name: "Nova Style"
   text: "IoT 原子 CSS 工具类"
-  tagline: "120 个 class · 12KB min · 给 ESP32 + MicroPython server 用 · 5 色 IoT 语义 · 内置暗色模式"
+  tagline: "120 个 class · 12KB min · 给 ESP32 + nova-server 用 · 5 色 IoT 语义 · 内置暗色模式"
   actions:
     - theme: brand
       text: 🚀 快速开始

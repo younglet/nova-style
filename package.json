@@ -20,7 +20,6 @@
     "dashboard",
     "tailwind-alternative"
   ],
-  "license": "MIT",
   "devDependencies": {
     "csso-cli": "^4.0.2",
     "vitepress": "^1.5.0",

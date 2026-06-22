@@ -3,6 +3,7 @@
 > IoT 原子 CSS 工具类。120 个 class · 12KB min · 内置暗色模式。
 > 给烧了 MicroPython 的 ESP32 当 HTTP server 时的前端三件套之一。
 > 配套 [novajs](https://github.com/) + [nova-ui](https://github.com/)。
+> 后端推荐 [**nova-server**](../nova-server/)（MicroPython 异步 Web 框架）。
 
 ## ✨ 特点
 
@@ -125,4 +126,4 @@ npm run docs:build
 
 ## 📜 License
 
-MIT
+powered by stemstar
