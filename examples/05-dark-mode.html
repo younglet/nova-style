@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>案例 05 - 暗色模式</title>
+  <link rel="stylesheet" href="nova-style.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+  <!-- 顶部 -->
+  <div class="bg-white p-4 flex justify-between items-center shadow">
+    <div class="text-lg font-bold">🌙 暗色模式演示</div>
+    <button id="toggle" class="px-4 py-2 rounded bg-gray-800 text-white text-sm cursor-pointer transition hover:bg-gray-700">
+      切换暗色
+    </button>
+  </div>
+
+  <div class="p-4">
+
+    <!-- 数据卡片 -->
+    <div class="grid grid-cols-3 gap-4 mb-4">
+      <div class="bg-white p-4 rounded-lg shadow text-center">
+        <div class="text-sm text-gray-500">温度</div>
+        <div class="text-3xl font-bold mt-2">24.3°C</div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow text-center">
+        <div class="text-sm text-gray-500">湿度</div>
+        <div class="text-3xl font-bold mt-2 text-blue-500">68%</div>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow text-center">
+        <div class="text-sm text-gray-500">PM2.5</div>
+        <div class="text-3xl font-bold mt-2 text-green-500">35</div>
+      </div>
+    </div>
+
+    <!-- 设备列表 -->
+    <div class="bg-white rounded-lg shadow">
+      <div class="p-3 flex justify-between items-center border">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-green-500"></span>
+          <span>客厅灯</span>
+        </div>
+        <span class="text-xs text-gray-500">已开启</span>
+      </div>
+      <div class="p-3 flex justify-between items-center border">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-gray-300"></span>
+          <span>空调</span>
+        </div>
+        <span class="text-xs text-gray-500">已关闭</span>
+      </div>
+    </div>
+
+    <!-- 提示 -->
+    <div class="bg-blue-100 p-4 rounded-lg text-blue-700 text-sm mt-4">
+      💡 <b>原理</b>：CSS 变量 <code class="font-mono">--nova-bg</code> / <code class="font-mono">--nova-surface</code> 在 <code class="font-mono">.dark</code> 下被重新赋值。<br>
+      所以 <code class="font-mono">bg-white</code> 在浅色是白卡，在暗色自动变深灰卡——不用写 <code class="font-mono">dark:bg-white</code>。
+    </div>
+
+    <div class="bg-yellow-100 p-4 rounded-lg text-yellow-700 text-sm mt-2">
+      ⚠️ 注意：<code class="font-mono">bg-gray-700</code> 这种「固定色阶」不会变暗（用于按钮/分割线，是故意的）。
+    </div>
+
+  </div>
+
+  <script>
+    const html = document.documentElement
+    const btn  = document.getElementById('toggle')
+    btn.addEventListener('click', () => {
+      html.classList.toggle('dark')
+      btn.textContent = html.classList.contains('dark') ? '切换浅色' : '切换暗色'
+    })
+
+    // 跟随系统偏好
+    if (matchMedia('(prefers-color-scheme: dark)').matches) {
+      html.classList.add('dark')
+      btn.textContent = '切换浅色'
+    }
+  </script>
+
+</body>
+</html>

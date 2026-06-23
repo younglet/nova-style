@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>nova-style on ESP32</title>
+  <link rel="stylesheet" href="nova-style.min.css">
+  <style>
+    body { padding: 16px; }
+    .led { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <div class="card max-w-md mx-auto">
+    <div class="card-body text-center">
+      <h1 class="card-title">智能家居控制</h1>
+      <p class="text-gray-500 text-sm mb-4">纯 CSS 渲染，7 KB</p>
+
+      <div class="device-card mb-3">
+        <div class="device-card-header">
+          <div class="device-card-title">💡 客厅灯</div>
+          <span class="device-card-status device-card-status-on"></span>
+        </div>
+        <div class="device-card-actions">
+          <span class="badge badge-success">已开启</span>
+        </div>
+      </div>
+
+      <div class="device-card mb-3">
+        <div class="device-card-header">
+          <div class="device-card-title">❄️ 空调</div>
+          <span class="device-card-status device-card-status-off"></span>
+        </div>
+        <div class="device-card-actions">
+          <span class="badge badge-neutral">已关闭</span>
+        </div>
+      </div>
+
+      <div class="sensor-card">
+        <div class="sensor-label">温度</div>
+        <div class="sensor-value">24.5<span class="sensor-unit">°C</span></div>
+        <div class="sensor-status sensor-status-normal">↑ 正常</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
