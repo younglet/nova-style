@@ -1,6 +1,10 @@
 import { defineConfig } from 'vitepress'
 
+// GitHub Pages project site uses /<repo>/ subpath; keep '/' for local dev.
+const base = process.env.GITHUB_ACTIONS ? '/nova-style/' : '/'
+
 export default defineConfig({
+  base,
   title: 'Nova Style',
   description: 'IoT 原子 CSS 工具类。120 个 class · 12KB min · 给 ESP32 + MicroPython server 用 · 5 色语义（绿/红/黄/蓝/灰） · 内置暗色模式',
   lang: 'zh-CN',
