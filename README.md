@@ -41,7 +41,8 @@ nova-style/
 │   ├── index.md
 │   ├── guide/                 ← 介绍、安装、设计原则、暗色模式
 │   ├── utilities/             ← Display / Flex / Grid / 颜色 / 间距...
-│   ├── examples/              ← 4 个交互式案例
+│   ├── examples/              ← （已重命名为 usage/）
+│   └── usage/                 ← 4 个交互式案例 + ESP32 部署模板 index.novastyle.html
 │   └── public/
 │       └── nova-style.css     ← 同步自根目录
 ```

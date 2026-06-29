@@ -42,17 +42,19 @@ nova-style/
 ├── package.json           ← build / sync / docs:dev / docs:build
 ├── README.md
 ├── scripts/
-│   └── sync-public.js     ← 把 src / examples / index.novastyle.html 同步到 docs/public/
-├── index.novastyle.html   ← ESP32 /static/ 入口 HTML
+│   └── sync-public.js     ← 把 src / usage / usage/index.novastyle.html 同步到 docs/public/
+├── (index.novastyle.html 已移入 usage/)  ESP32 /static/ 入口 HTML
 ├── Dockerfile
-├── 01-static.html         ← 静态展示 demo
-├── 02-interactive.html    ← 交互 demo
-├── 03-dashboard.html
-├── 04-control-panel.html
-├── 05-dark-mode.html
-├── 06-form.html
-├── 07-chart.html
-└── 08-iot-monitor.html
+└── usage/                 ← 8 个 demo + ESP32 部署模板
+    ├── 01-static.html         ← 静态展示 demo
+    ├── 02-interactive.html    ← 交互 demo
+    ├── 03-dashboard.html
+    ├── 04-control-panel.html
+    ├── 05-dark-mode.html
+    ├── 06-form.html
+    ├── 07-chart.html
+    ├── 08-iot-monitor.html
+    └── index.novastyle.html
 ```
 
 ## 核心约定
