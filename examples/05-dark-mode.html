@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>案例 05 - 暗色模式</title>
-  <link rel="stylesheet" href="nova-style.css">
+  <link rel="stylesheet" href="../src/nova-style.min.css">
 </head>
 <body class="bg-gray-50 min-h-screen">
 
@@ -52,13 +52,14 @@
     </div>
 
     <!-- 提示 -->
-    <div class="bg-blue-100 p-4 rounded-lg text-blue-700 text-sm mt-4">
-      💡 <b>原理</b>：CSS 变量 <code class="font-mono">--nova-bg</code> / <code class="font-mono">--nova-surface</code> 在 <code class="font-mono">.dark</code> 下被重新赋值。<br>
-      所以 <code class="font-mono">bg-white</code> 在浅色是白卡，在暗色自动变深灰卡——不用写 <code class="font-mono">dark:bg-white</code>。
+    <div class="bg-blue-soft p-4 rounded-lg text-blue-soft text-sm mt-4">
+      💡 <b>原理</b>：CSS 变量 <code>--nova-bg</code> / <code>--nova-surface</code> 在 <code>.dark</code> 下被重新赋值。<br>
+      所以 <code>bg-white</code> 在浅色是白卡，在暗色自动变深灰卡——不用写 <code>dark:bg-white</code>。
     </div>
 
-    <div class="bg-yellow-100 p-4 rounded-lg text-yellow-700 text-sm mt-2">
-      ⚠️ 注意：<code class="font-mono">bg-gray-700</code> 这种「固定色阶」不会变暗（用于按钮/分割线，是故意的）。
+    <div class="bg-yellow-soft p-4 rounded-lg text-yellow-soft text-sm mt-2">
+      ⚠️ 注意：<code>bg-gray-700</code> 这种「固定色阶」不会变暗（用于按钮/分割线，是故意的）。<br>
+      状态色提示框推荐用 <code>*-soft</code> 系列，自动适配暗色模式。
     </div>
 
   </div>
