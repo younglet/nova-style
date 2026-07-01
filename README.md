@@ -1,5 +1,6 @@
 # Nova Style
 
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC_BY--NC_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![GitHub stars](https://img.shields.io/github/stars/younglet/nova-style.svg)](https://github.com/younglet/nova-style) [![Docs](https://img.shields.io/badge/Docs-nova-style.app-blueviolet.svg)](https://younglet.github.io/nova-style/) ![Size](https://img.shields.io/badge/Size-12KB_min-orange.svg)
 
 > IoT 原子 CSS 工具类。120 个 class · 12KB min · 内置暗色模式。
