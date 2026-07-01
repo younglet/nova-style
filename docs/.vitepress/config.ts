@@ -7,7 +7,7 @@ export default defineConfig({
   repo: 'https://github.com/younglet/nova-style',
   base,
   title: 'Nova Style',
-  description: 'IoT 原子 CSS 工具类。120 个 class · 12KB min · 给 ESP32 + MicroPython server 用 · 5 色语义（绿/红/黄/蓝/灰） · 内置暗色模式',
+  description: 'IoT 原子 CSS 工具类。120 个 class · 12KB min · 5 色语义（绿/红/黄/蓝/灰）· 内置暗色模式 · 给 ESP32 当 HTTP server 用。',
   lang: 'zh-CN',
   cleanUrls: true,
   lastUpdated: true,
