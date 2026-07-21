@@ -175,17 +175,24 @@
  * |---------------|----------------------|--------------------------|
  * | .block        | display: block       | 独占一行（默认 div/p/h1） |
  * | .inline-block | display: inline-block| 不独占，但可设宽高         |
- * | .flex         | display: flex        | 弹性盒子（最常用）         |
+ * | .row          | display: flex        | 横向弹性盒子（最常用）     |
+ * | .col          | display: flex + col   | 纵向弹性盒子               |
  * | .inline-flex  | display: inline-flex | 行内弹性盒子               |
  * | .grid         | display: grid        | 网格布局                  |
  * | .hidden       | display: none        | 隐藏元素                  |
  *
  * 💡 DOM 例子：
  *   <!-- 横向并排 3 个按钮 -->
- *   <div class="flex gap-2">
+ *   <div class="row gap-2">
  *     <button>A</button>
  *     <button>B</button>
  *     <button>C</button>
+ *   </div>
+ *
+ *   <!-- 纵向排列 -->
+ *   <div class="col gap-2">
+ *     <div>第一行</div>
+ *     <div>第二行</div>
  *   </div>
  *
  *   <!-- 临时隐藏一个元素 -->
@@ -193,35 +200,29 @@
  * ============================================================ */
 .block         { display: block; }
 .inline-block  { display: inline-block; }
+.row           { display: flex; }
+.col           { display: flex; flex-direction: column; }
 .flex          { display: flex; }
+.flex-col      { flex-direction: column; }
 .inline-flex   { display: inline-flex; }
 .grid          { display: grid; }
 .hidden        { display: none; }
 
 
 /* ============================================================
- * 3. Flex 方向（Flex Direction & Wrap）
- * ============================================================
- * 父元素需要先加 .flex/.inline-flex，本节才有意义。
+ * 3. Flex 换行
+ * ============================================================ 
+ * .row / .col 已自带方向，这里只剩换行。
  *
- * | class      | CSS                | 说明                |
- * |------------|--------------------|---------------------|
- * | .flex-row  | flex-direction: row | 默认值，横着排       |
- * | .flex-col  | flex-direction: col | 竖着排              |
- * | .flex-wrap | flex-wrap: wrap     | 子元素超出宽度时换行 |
+ * | class      | CSS             | 说明                    |
+ * |------------|-----------------|-------------------------|
+ * | .flex-wrap | flex-wrap: wrap | 子元素超出宽度时换行     |
  *
  * 💡 DOM 例子：
- *   <div class="flex flex-row gap-2">  <!-- 横向 -->
- *     <div>A</div><div>B</div>
- *   </div>
- *
- *   <div class="flex flex-col gap-2">  <!-- 纵向 -->
- *     <div>第一行</div>
- *     <div>第二行</div>
+ *   <div class="row flex-wrap gap-2">
+ *     <div>A</div><div>B</div><div>C</div><div>D</div>
  *   </div>
  * ============================================================ */
-.flex-row      { flex-direction: row; }
-.flex-col      { flex-direction: column; }
 .flex-wrap     { flex-wrap: wrap; }
 
 
@@ -253,18 +254,18 @@
  *
  * 💡 DOM 例子（最常见组合）：
  *   <!-- 顶部导航：标题左、时间右 -->
- *   <div class="flex justify-between items-center">
+ *   <div class="row justify-between items-center">
  *     <div>标题</div>
  *     <div>右侧</div>
  *   </div>
  *
  *   <!-- 居中显示 -->
- *   <div class="flex items-center justify-center">
+ *   <div class="row items-center justify-center">
  *     <span>居中</span>
  *   </div>
  *
  *   <!-- 等宽按钮组 -->
- *   <div class="flex gap-2">
+ *   <div class="row gap-2">
  *     <button class="flex-1">开</button>
  *     <button class="flex-1">关</button>
  *   </div>
@@ -300,7 +301,7 @@
  * 💡 推荐用 gap 而不是给子元素加 margin，gap 一行搞定。
  *
  * 💡 DOM 例子：
- *   <div class="flex gap-4">    <!-- 子元素之间 16px 间距 -->
+ *   <div class="row gap-4">    <!-- 子元素之间 16px 间距 -->
  *     <div>A</div><div>B</div>
  *   </div>
  *
@@ -371,7 +372,7 @@
  *   </div>
  *
  *   <!-- 侧边栏 + 主内容 -->
- *   <div class="flex">
+ *   <div class="row">
  *     <div class="w-1/4">侧边栏</div>
  *     <div class="flex-1">主内容</div>
  *   </div>
@@ -382,6 +383,8 @@
 .w-2\/3  { width: 66.666%; }
 .w-1\/4  { width: 25%;     }
 .w-3\/4  { width: 75%;     }
+.w-8     { width: 2rem;    }
+.w-10    { width: 2.5rem;  }
 .w-12    { width: 3rem;    }
 .w-16    { width: 4rem;    }
 .w-24    { width: 6rem;    }
@@ -416,7 +419,7 @@
  *
  *   <!-- 固定高度图表区 -->
  *   <div class="bg-white p-4">
- *     <div class="flex items-end gap-1 h-40">
+ *     <div class="row items-end gap-1 h-40">
  *       <div class="bg-blue-500 w-full" style="height: 60%"></div>
  *     </div>
  *   </div>
@@ -424,6 +427,8 @@
 .h-full      { height: 100%;  }
 .h-screen    { height: 100vh; }
 .min-h-screen{ min-height: 100vh; }
+.h-8         { height: 2rem;   }
+.h-10        { height: 2.5rem;}
 .h-12        { height: 3rem;  }
 .h-16        { height: 4rem;  }
 .h-24        { height: 6rem;  }
@@ -1042,23 +1047,76 @@ label {
 
 
 /* ============================================================
- * 23. 全局默认样式 & 暗色模式增强
+ * 23. CSS Reset & 全局默认样式
  * ============================================================
- * 切换暗色模式时，下面这些元素会自动跟着反转，不需要手动加 class。
+ * 引入文件后自动生效，不需要手动加 class。
+ * 覆盖常见浏览器默认差异，提供一致的排版基础。
  *
  * 涵盖：
- *   - body 默认背景色 / 文字色 / 平滑过渡
- *   - ::placeholder 输入框占位符颜色
- *   - ::selection 文本选区颜色
- *   - ::-webkit-scrollbar 滚动条颜色
- *   - code / pre / hr / a 默认样式
+ *   - box-sizing 统一
+ *   - body / h1~h6 / p / ul / ol 默认边距归零
+ *   - 图片自适应
+ *   - 按钮、输入框字体继承
+ *   - body 背景色 / 文字色 / 暗色平滑过渡
+ *   - ::placeholder / ::selection / 滚动条 / code / pre / hr / a
  *
- * 💡 如需手动重置，任意元素都可以覆盖：
+ * 💡 如需手动覆盖：
  *   <body class="bg-white text-gray-900">
- *   <div class="bg-gray-50">
  * ============================================================ */
 
-/* 切换暗色模式时颜色平滑过渡（不包含 background-image / box-shadow） */
+/* ---------- 盒模型重置 ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ---------- 边距归零 ---------- */
+html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd,
+figure, figcaption, blockquote, fieldset, legend, pre, hr {
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- 列表符号 ---------- */
+ul, ol {
+  list-style: none;
+}
+
+/* ---------- 图片 / 视频 / 嵌入元素自适应 ---------- */
+img, video, canvas, svg, iframe {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- 表单 & 按钮字体继承 ---------- */
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* ---------- 按钮去掉默认浏览器样式 ---------- */
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+/* ---------- 链接去掉下划线（保留视觉干净的基调） ---------- */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------- 表格边框合并 ---------- */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* ---------- 暗色模式平滑过渡 ---------- */
 html {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
@@ -1066,6 +1124,9 @@ html {
 body {
   background-color: var(--nova-bg);
   color: var(--nova-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
