@@ -202,6 +202,8 @@
 .inline-block  { display: inline-block; }
 .row           { display: flex; }
 .col           { display: flex; flex-direction: column; }
+.flex          { display: flex; }
+.flex-col      { flex-direction: column; }
 .inline-flex   { display: inline-flex; }
 .grid          { display: grid; }
 .hidden        { display: none; }
@@ -381,6 +383,8 @@
 .w-2\/3  { width: 66.666%; }
 .w-1\/4  { width: 25%;     }
 .w-3\/4  { width: 75%;     }
+.w-8     { width: 2rem;    }
+.w-10    { width: 2.5rem;  }
 .w-12    { width: 3rem;    }
 .w-16    { width: 4rem;    }
 .w-24    { width: 6rem;    }
@@ -423,6 +427,8 @@
 .h-full      { height: 100%;  }
 .h-screen    { height: 100vh; }
 .min-h-screen{ min-height: 100vh; }
+.h-8         { height: 2rem;   }
+.h-10        { height: 2.5rem;}
 .h-12        { height: 3rem;  }
 .h-16        { height: 4rem;  }
 .h-24        { height: 6rem;  }
