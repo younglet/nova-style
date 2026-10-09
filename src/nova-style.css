@@ -1076,6 +1076,14 @@ figure, figcaption, blockquote, fieldset, legend, pre, hr {
   padding: 0;
 }
 
+/* ---------- 标题字号统一 ---------- */
+/* 浏览器默认 h1=2em、h2=1.5em…会让字号忽大忽小；
+   这里统一成和正文一样大，想放大请用工具类 text-lg / text-2xl */
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
 /* ---------- 列表符号 ---------- */
 ul, ol {
   list-style: none;
@@ -1123,6 +1131,9 @@ html {
 
 body {
   background-color: var(--nova-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei",
+               "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
   color: var(--nova-text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
